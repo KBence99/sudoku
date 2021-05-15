@@ -20,7 +20,14 @@ public class startcontroller {
     public void StartAction(ActionEvent actionEvent) throws IOException{
         if (usernamefield.getText().isEmpty())
         {
-            errorLabel.setText("* Username is empty!");
+            errorLabel.setText("* No username given");
+        }else
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
 }

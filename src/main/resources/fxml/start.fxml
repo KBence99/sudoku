@@ -15,17 +15,17 @@
          </font>
       </Label>
       <TextField fx:id="usernamefield" layoutX="215.0" layoutY="176.0" promptText="please enter name" />
-      <Button fx:id="MediumButton" onAction="#StartAction" layoutX="237.0" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Medium">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
       <Label fx:id="errorLabel" layoutX="229.0" layoutY="214.0" text="" textFill="#dd1515">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
       <Button fx:id="EasyButton" onAction="#StartAction" layoutX="90.0" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Easy">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="MediumButton" onAction="#StartAction" layoutX="237.0" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Medium">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
