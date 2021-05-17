@@ -1,6 +1,6 @@
-import com.wissassblog.sudoku.computationlogic.GameLogic;
-import com.wissassblog.sudoku.constants.GameState;
 import org.junit.jupiter.api.Test;
+import sudoku.enums.GameState;
+import sudoku.utility.GameLogic;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,9 +8,6 @@ import java.util.List;
 
 public class GameLogicTest {
 
-    /**
-     * Start with the basic logic to validate a valid Sudoku puzzle
-     */
     @Test
     public void onValidateValidPuzzle() {
         assert (GameState.COMPLETE ==
@@ -29,25 +26,16 @@ public class GameLogicTest {
         );
     }
 
-    /**
-     * Expected value: True (i.e. squares are indeed not all filled
-     */
     @Test
     public void gameSquaresAreNotFilled() {
         assert (GameLogic.tilesAreNotFilled(TestData.getValidStart().getCopyOfGridState()));
     }
 
-    /**
-     * Expected value: false
-     */
     @Test
     public void gameSquaresAreFilled() {
         assert (!GameLogic.tilesAreNotFilled(TestData.getSolved().getCopyOfGridState()));
     }
 
-    /**
-     * Expected value: true
-     */
     @Test
     public void gameSquaresAreInvalid() {
         int[][] invalid = TestData.getInvalid().getCopyOfGridState();
@@ -56,9 +44,6 @@ public class GameLogicTest {
         assert (isInvalid);
     }
 
-    /**
-     * Expected value: false
-     */
     @Test
     public void gameSquaresAreValid() {
         int[][] valid = TestData.getSolved()
@@ -71,9 +56,6 @@ public class GameLogicTest {
         assert (!isInvalid);
     }
 
-    /**
-     * Expected value: true
-     */
     @Test
     public void gameColumnsAreInvalid() {
         int[][] invalid = TestData.getInvalid()
@@ -85,9 +67,6 @@ public class GameLogicTest {
         assert (isInvalid);
     }
 
-    /**
-     * Expected value: false
-     */
     @Test
     public void gameColumnsAreValid() {
         int[][] valid = TestData.getSolved().getCopyOfGridState();
@@ -96,9 +75,6 @@ public class GameLogicTest {
         assert (!isInvalid);
     }
 
-    /**
-     * Expected value: true
-     */
     @Test
     public void gameRowsAreInvalid() {
         int[][] invalid = TestData.getInvalid().getCopyOfGridState();
@@ -107,9 +83,6 @@ public class GameLogicTest {
         assert (isInvalid);
     }
 
-    /**
-     * Expected value: false
-     */
     @Test
     public void gameRowsAreValid() {
         int[][] valid = TestData.getSolved().getCopyOfGridState();
@@ -118,10 +91,6 @@ public class GameLogicTest {
         assert (!isInvalid);
     }
 
-    /**
-     * Collection does have repeated integer values (this will be either a row or a column)
-     * Expected value: true
-     */
     @Test
     public void collectionHasRepeats() {
         List<Integer> testList = Arrays.asList(0, 0, 0, 1, 1, 0, 0, 0, 0);
@@ -131,9 +100,6 @@ public class GameLogicTest {
 
     }
 
-    /**
-     * Expected value: false
-     */
     @Test
     public void collectionHasNoRepeats() {
         List<Integer> testListOne = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0);

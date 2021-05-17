@@ -1,14 +1,7 @@
-import com.wissassblog.sudoku.constants.GameState;
-import com.wissassblog.sudoku.problemdomain.SudokuGame;
+import sudoku.model.SudokuGame;
+import sudoku.enums.GameState;
 
 class TestData {
-    //No access modifier means Package-Private access, i.e. only tests within src/test/java
-    /**
-     * Note: Arrays which do not use an initializer have all elements assigned to 0 by default.
-     * This is convenient, as 0 represents an empty square in the sudoku puzzle.
-     * generate a valid new puzzle with 30 solved squares
-     * @return
-     */
     static SudokuGame getValidStart(){
         int[][] validStart = new int[9][9];
 

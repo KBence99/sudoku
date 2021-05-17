@@ -1,4 +1,4 @@
-package sudoku;
+package sudoku.leadboard;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

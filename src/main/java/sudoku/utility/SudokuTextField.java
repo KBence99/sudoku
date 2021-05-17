@@ -1,17 +1,23 @@
-package sudoku;
+package sudoku.utility;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
+import org.tinylog.Logger;
 
-import javax.swing.*;
+/**
+ * Custom TextField class for greater control over the Textfield.
+ */
+public class SudokuTextField extends TextField {
 
-public class SudokuTextfield extends TextField {
     private final int x;
+
     private final int y;
 
+    /**
+     * Initializes the Sudoku game with its coordinates as well as giving it some other properties.
+     * @param x x location of TextField
+     * @param y y location of TextField
+     */
     public SudokuTextfield(int x, int y) {
         this.x = x;
         this.y = y;
@@ -32,19 +38,20 @@ public class SudokuTextfield extends TextField {
         return y;
     }
 
+    /**
+     * Replaces the textfields current value with a new one, if its between 0 and 9
+     * @param i .
+     * @param i1 .
+     * @param s .
+     */
     @Override
     public void replaceText(int i, int i1, String s) {
         if (s.matches("[1-9]")) {
             this.setText(s);
-        }
-        if (s.matches("0")) {
+        }else if (s.matches("0")) {
             this.setText(" ");
-        }
-    }
-    @Override
-    public void replaceSelection(String s){
-        if(s.matches("[1-9]")){
-            this.setText(s);
+        }else {
+            Logger.info("Invalid key {}",s);
         }
     }
 }
