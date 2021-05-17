@@ -1,8 +1,12 @@
-package interfaces;
+package sudoku;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
+import javafx.scene.input.KeyEvent;
+
+import javax.swing.*;
 
 public class SudokuTextfield extends TextField {
     private final int x;
@@ -32,6 +36,9 @@ public class SudokuTextfield extends TextField {
     public void replaceText(int i, int i1, String s) {
         if (s.matches("[1-9]")) {
             this.setText(s);
+        }
+        if (s.matches("0")) {
+            this.setText(" ");
         }
     }
     @Override
