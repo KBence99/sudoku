@@ -1,18 +1,17 @@
-package sudoku;
+package sudoku.utility;
 
-import sudoku.Coordinates;
-import sudoku.GameLogic;
+import sudoku.model.Coordinates;
 
-import static sudoku.SudokuGame.GRID_BOUNDARY;
+import static sudoku.model.SudokuGame.GRID_BOUNDARY;
 
+/**
+ * Class for solving a sudoku puzzle.
+ */
 public class SudokuSolver {
     public static boolean puzzleIsSolvable(int[][] puzzle) {
 
-        //step 1:
         Coordinates[] emptyCells = typeWriterEnumerate(puzzle);
 
-        //I would like to stress that using lots of nested loops is only appropriate if you are certain that
-        //the size of input O(n) is small.
         int index = 0;
         int input = 1;
         while (index < 10) {
@@ -20,15 +19,10 @@ public class SudokuSolver {
             input = 1;
             while (input < 40) {
                 puzzle[current.getX()][current.getY()] = input;
-                //if puzzle is invalid....
                 if (GameLogic.sudokuIsInvalid(puzzle)) {
-                    //if we hit GRID_BOUNDARY and it is still invalid, move to step 4b
                     if (index == 0 && input == GRID_BOUNDARY) {
-                        //first cell can't be solved
                         return false;
                     } else if (input == GRID_BOUNDARY) {
-                        //decrement by 2 since the outer loop will increment by 1 when it finishes; we want the previous
-                        //cell
                         index--;
                     }
 
@@ -37,30 +31,14 @@ public class SudokuSolver {
                     index++;
 
                     if (index == 39) {
-                        //last cell, puzzle solved
                         return true;
                     }
-
-                    //input = 10 to break the loop
                     input = 10;
                 }
-                //move to next cell over
             }
         }
-
         return false;
     }
-
-    /**
-     * Enumerate all empty cells in typewriter order (left to right, top to bottom)
-     * <p>
-     * 1. Traverse x from from 0-8 for each y, from 0-8, adding to a 1 dimensional array.
-     * <p>
-     * NOTE: Assume that the maximum number of empty cells is 40, as per GameGenerator
-     *
-     * @param puzzle
-     * @return
-     */
     private static Coordinates[] typeWriterEnumerate(int[][] puzzle) {
         Coordinates[] emptyCells = new Coordinates[40];
         int iterator = 0;
@@ -75,6 +53,4 @@ public class SudokuSolver {
         }
         return emptyCells;
     }
-
-
 }

@@ -1,15 +1,13 @@
-package sudoku.leadboard;
+package sudoku.leaderboard;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.Duration;
-
+/**
+ *Class to represent a games score.
+ */
 @lombok.Data
 public class GameResult {
 
-    @JsonProperty("player")
     private String player;
 
-    @JsonProperty("time")
     private long time;
 }

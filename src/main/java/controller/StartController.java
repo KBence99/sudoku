@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.tinylog.Logger;
+
 import javax.inject.Inject;
 import java.io.IOException;
 
-public class startcontroller {
+public class StartController {
 
     @Inject private FXMLLoader fxmlLoader;
 
@@ -33,11 +35,12 @@ public class startcontroller {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
             Parent root = fxmlLoader.load();
             playername=playerNameTextField.getText();
-            gamecontroller controller = fxmlLoader.<gamecontroller>getController();
+            GameController controller = fxmlLoader.<GameController>getController();
             controller.setPlayerName(playername);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
+            Logger.info("The username is set to {}, loading game scene", playername);
         }
     }
 }

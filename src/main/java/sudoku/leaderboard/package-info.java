@@ -1,4 +1,4 @@
 /**
- * Classes for representing the leaderboard and its
+ * Classes for representing a leaderboard.
  */
-package sudoku.leadboard;
+package sudoku.leaderboard;

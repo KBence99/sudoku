@@ -1,15 +1,23 @@
-package sudoku;
+package sudoku.utility;
 
-import sudoku.utility.SudokuUtilities;
+import sudoku.model.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static sudoku.SudokuGame.GRID_BOUNDARY;
+import static sudoku.model.SudokuGame.GRID_BOUNDARY;
+import static sudoku.model.SudokuGame.MISSING_TILES;
 
-
+/**
+ * Class for generating a Sudoku game.
+ */
 public class GameGenerator {
+
+    /**
+     * Generates a new Sudoku.
+     * @return a new Sudoku grid with some numbers missing
+     */
     public static int[][] getNewGameGrid() {
         return unsolveGame(getSolvedGame());
     }
@@ -52,7 +60,6 @@ public class GameGenerator {
                         newGrid[xCoordinate][yCoordinate] = 0;
                         interrupt++;
                     }
-                    //otherwise, indicate that a value has been allocated, and add it to the allocation tracker.
                     else {
                         allocTracker.add(new Coordinates(xCoordinate, yCoordinate));
                         allocations++;
@@ -68,17 +75,14 @@ public class GameGenerator {
 
         boolean solvable = false;
 
-        //note: not actually solvable until the algorithm below finishes!
         int[][] solvableArray = new int[GRID_BOUNDARY][GRID_BOUNDARY];
 
         while (solvable == false){
 
-            //Take values from solvedGame and write to new unsolved; i.e. reset to initial state
             SudokuUtilities.copySudokuArrayValues(solvedGame, solvableArray);
 
-            //remove 40 random numbers
             int index = 0;
-            while (index < 40) {
+            while (index < MISSING_TILES) {
                 int xCoordinate = random.nextInt(GRID_BOUNDARY);
                 int yCoordinate = random.nextInt(GRID_BOUNDARY);
 

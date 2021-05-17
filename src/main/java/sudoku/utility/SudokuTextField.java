@@ -15,10 +15,10 @@ public class SudokuTextField extends TextField {
 
     /**
      * Initializes the Sudoku game with its coordinates as well as giving it some other properties.
-     * @param x x location of TextField
-     * @param y y location of TextField
+     * @param x x location of TextField.
+     * @param y y location of TextField.
      */
-    public SudokuTextfield(int x, int y) {
+    public SudokuTextField(int x, int y) {
         this.x = x;
         this.y = y;
         this.setPrefWidth(30);
@@ -39,10 +39,10 @@ public class SudokuTextField extends TextField {
     }
 
     /**
-     * Replaces the textfields current value with a new one, if its between 0 and 9
-     * @param i .
-     * @param i1 .
-     * @param s .
+     * Replaces the TextFields current value with a new one, if its between 0 and 9.
+     * @param i first index of string, unused here.
+     * @param i1 last index of string, unused here.
+     * @param s text the previous one is being replaced with.
      */
     @Override
     public void replaceText(int i, int i1, String s) {

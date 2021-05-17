@@ -2,8 +2,6 @@ package controller;
 
 import javafx.animation.Animation;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,13 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import sudoku.SudokuTextfield;
+import org.tinylog.Logger;
+import sudoku.model.Coordinates;
+import sudoku.model.SudokuGame;
+import sudoku.utility.SudokuTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import sudoku.*;
-import sudoku.constants.GameState;
+import sudoku.enums.GameState;
 import sudoku.utility.GameLogic;
 import sudoku.utility.Stopwatch;
 
@@ -28,9 +27,8 @@ import java.time.Instant;
 import java.util.HashMap;
 import sudoku.utility.IOclass;
 
-public class gamecontroller{
+public class GameController {
     @FXML private GridPane Game;
-    @FXML private Button Restart;
     @FXML private Button Finish;
     @FXML private Label StopwatcLabel;
     @FXML private Label PlayerNameLabel;
@@ -39,7 +37,7 @@ public class gamecontroller{
 
     private final Stopwatch stopwatch = new Stopwatch();
     private SudokuGame current_game=GameLogic.getNewGame();
-    private HashMap<Coordinates, SudokuTextfield> textFieldCoordinates;
+    private HashMap<Coordinates, SudokuTextField> textFieldCoordinates;
     private final int[][] current_grid=current_game.getCopyOfGridState();
     private Instant startime;
     private String player;
@@ -48,13 +46,17 @@ public class gamecontroller{
         this.player=playerName;
     }
 
-    public void startGame(){
-        current_game = GameLogic.getNewGame();
-        filltable();
+    public void lockTable(){
+        for(int x=0; x<9; x++){
+            for(int y=0; y<9; y++){
+                SudokuTextField tile = textFieldCoordinates.get(new Coordinates(x,y));
+                tile.setDisable(true);
+            }
+        }
     }
 
     public void updateSquare(int x, int y, int input){
-        SudokuTextfield tile = textFieldCoordinates.get(new Coordinates(x,y));
+        SudokuTextField tile = textFieldCoordinates.get(new Coordinates(x,y));
 
         String value = Integer.toString(input);
 
@@ -75,36 +77,34 @@ public class gamecontroller{
 
     private void handleInput(int value, Object source) {
         onSudokuInput(
-                ((SudokuTextfield) source).getX(),
-                ((SudokuTextfield) source).getY(),
+                ((SudokuTextField) source).getX(),
+                ((SudokuTextField) source).getY(),
                 value,current_game
         );
+        Logger.info("cell ({} {}) is updated, value is {}",((SudokuTextField) source).getX(),((SudokuTextField) source).getY(),value);
     }
     public void onSudokuInput(int x, int y, int input, SudokuGame state) {
         SudokuGame gameData = state;
+        current_game.InsertToTable(x,y,input);
         int[][] newGridState = gameData.getCopyOfGridState();
         newGridState[x][y] = input;
 
         gameData = new SudokuGame(GameLogic.checkForCompletion(newGridState),newGridState);
         updateSquare(x,y,input);
 
+        Logger.info("Current state is {}", gameData.getGameState());
         if(gameData.getGameState() == GameState.COMPLETE){
             System.out.println("Complete");
             var text = textFieldCoordinates.get(new Coordinates(x,y));
             text.setDisable(true);
-            Restart.setVisible(false);
-            Finish.setVisible(true);
+            Finish.setDisable(false);
             stopwatch.stop();
+            lockTable();
         }
     }
 
-    public void handleRestartButton( javafx.event.ActionEvent actionEvent) throws IOException{
-        stopwatch.stop();
-        stopwatch.reset();
-        stopwatch.start();
-    }
-
     public void handleFinishButton(javafx.event.ActionEvent actionEvent) throws IOException {
+        Logger.info("Finish button is pressed, saving leaderboard");
         IOclass.updateBoard(player, Duration.between(startime, Instant.now()).getSeconds());
         fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/leadboard.fxml"));
         Parent root = fxmlLoader.load();
@@ -118,7 +118,7 @@ public class gamecontroller{
         {
             for(int y=0; y<9; y++)
             {
-                SudokuTextfield tile = new SudokuTextfield(x,y);
+                SudokuTextField tile = new SudokuTextField(x,y);
                 if(current_grid[x][y]==0){
                     tile.setText(" ");
                     tile.setDisable(false);
@@ -138,7 +138,7 @@ public class gamecontroller{
         {
             for(int y=0; y<9; y++)
             {
-                SudokuTextfield field = textFieldCoordinates.get(new Coordinates(x,y));
+                SudokuTextField field = textFieldCoordinates.get(new Coordinates(x,y));
                 Game.getChildren().remove(field);
             }
         }

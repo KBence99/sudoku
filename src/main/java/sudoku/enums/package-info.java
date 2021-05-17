@@ -1,4 +1,4 @@
 /**
- * Enumerators for representing the state of the game
+ * Enumerators for representing the state of the game.
 */
-package sudoku.constants;
+package sudoku.enums;

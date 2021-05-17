@@ -6,31 +6,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.startcontroller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartController">
    <children>
       <Label layoutX="153.0" layoutY="36.0" text="Sudoku Game" textAlignment="CENTER" textFill="#2a0ff7" textOverrun="CLIP">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <TextField fx:id="usernamefield" layoutX="215.0" layoutY="176.0" promptText="please enter name" />
+      <TextField fx:id="playerNameTextField" layoutX="215.0" layoutY="176.0" promptText="please enter name" />
       <Label fx:id="errorLabel" layoutX="229.0" layoutY="214.0" text="" textFill="#dd1515">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="EasyButton" onAction="#StartAction" layoutX="90.0" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Easy">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="MediumButton" onAction="#StartAction" layoutX="237.0" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Medium">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="Hardbutton" layoutX="385.0" onAction="#StartAction" layoutY="267.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="126.0" text="Hard">
+      <Button fx:id="MediumButton" layoutX="237.0" layoutY="267.0" mnemonicParsing="false" onAction="#StartAction" prefHeight="67.0" prefWidth="126.0" text="Start">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

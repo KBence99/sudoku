@@ -1,7 +1,7 @@
-package sudoku.constants;
+package sudoku.enums;
 
 /**
- * Enumerator for specifying a row of columns
+ * Enumerator for specifying a row of columns.
  */
 public enum Rows {
     TOP,

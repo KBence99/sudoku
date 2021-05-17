@@ -1,27 +1,50 @@
-package sudoku;
+package sudoku.model;
 
-import sudoku.constants.GameState;
+import sudoku.enums.GameState;
 import sudoku.utility.SudokuUtilities;
 
-import java.io.Serializable;
+/**
+ *Class for representing a game of Sudoku.
+ */
+public class SudokuGame{
 
-public class SudokuGame implements Serializable {
     private final GameState gameState;
-    private final int[][] gridstate;
 
+    private final int[][] gridState;
+
+    /**
+     * The amount of rows and columns, always the same.
+     */
     public static final int GRID_BOUNDARY = 9;
+    /**
+     * The among of numbers removed in each game.
+     */
+    public static final int MISSING_TILES = 3;
 
-    public SudokuGame(GameState gameState, int[][] gridstate) {
+    public SudokuGame(GameState gameState, int[][] gridState) {
         this.gameState = gameState;
-        this.gridstate = gridstate;
+        this.gridState = gridState;
     }
 
     public GameState getGameState() {
         return gameState;
     }
 
+    /**
+     * Inserts a number into the current Sudoku table.
+     * @param x x location.
+     * @param y y location.
+     * @param v value.
+     */
+    public void InsertToTable(int x, int y, int v){
+        gridState[x][y]=v;
+    }
+    /**
+     * Returns a copy of the current games Grid state.
+     * @return a grid with the same values as the current games grid.
+     */
     public int[][] getCopyOfGridState() {
-        return SudokuUtilities.copyToNewArray(gridstate);
+        return SudokuUtilities.copyToNewArray(gridState);
     }
 
 }

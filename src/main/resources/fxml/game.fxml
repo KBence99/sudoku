@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gamecontroller">
-<GridPane id="Game" fx:id="Game" stylesheets="@../stylesheets/grid.css">
-
-</GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+    <GridPane id="Game" fx:id="Game" layoutX="105.0" layoutY="65.0" stylesheets="@../stylesheets/grid.css">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        </rowConstraints>
+    </GridPane>
+    <Button fx:id="Finish" layoutX="415.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleFinishButton" prefHeight="61.0" prefWidth="146.0" text="Finish" disable="true">
+      <font>
+         <Font size="25.0" />
+      </font></Button>
+   <Label fx:id="StopwatcLabel" layoutX="409.0" layoutY="176.0" prefHeight="48.0" prefWidth="159.0" text="00:00:00">
+      <font>
+         <Font size="32.0" />
+      </font>
+   </Label>
+   <Label fx:id="PlayerNameLabel" alignment="CENTER" layoutX="409.0" layoutY="65.0" prefHeight="101.0" prefWidth="159.0" textFill="#2a0ff7">
+      <font>
+         <Font size="38.0" />
+      </font>
+   </Label>
 </Pane>
